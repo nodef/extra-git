@@ -1,0 +1,24 @@
+{
+  "name": "extra-git",
+  "version": "0.0.1",
+  "description": "GIT utilities -- repo summary, repl, changelog population, author commit percentages and more.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodef/extra-git.git"
+  },
+  "keywords": [
+    "extra",
+    "git"
+  ],
+  "author": "wolfram77@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nodef/extra-git/issues"
+  },
+  "homepage": "https://github.com/nodef/extra-git#readme"
+}
