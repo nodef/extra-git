@@ -6,6 +6,7 @@ const htmlEntities = require('html-entities');
 const markdownToText = require('markdown-to-text').default;
 
 const SUPER_URL = 'https://github.com/tj/git-extras';
+const SUPER_MSG = '# Source: git-extras';
 const RDESC_ETC = /^\s+\"([\w-]+):\s*(.*?)\"(?:\s*\\)$/gm;
 const RDESC_MAN = /^\s+-\s+\*\*([\w-]+)\(\d\)\*\*\s(.*)$/gm;
 const RNOT_TEXT = /[^\w\s\'\(\)-\/]/g;
@@ -69,7 +70,7 @@ function copyBin(dir, desc) {
     var g = f.replace(/^git-/g, '');
     var d = readFile(`${bin}/${f}`);
     var c = desc.get(g)||'';
-    d = d.replace(RSHE_BANG, `$1\n## ${c}\n\n`)
+    d = d.replace(RSHE_BANG, `$1\n## ${c}\n${SUPER_MSG}\n\n`)
     writeFile(`bin/${g}.sh`, d);
   }
 }
