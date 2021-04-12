@@ -26,7 +26,7 @@ function stringLimit(x, n) {
 function stringAlign(x, n, s) {
   var a = '';
   for (var i=0; i<x.length; i+=n) {
-    if (a) a += ' '.repeat(s);
+    if (a) a += '\n'+' '.repeat(s);
     a += x.substring(i, i+n);
   }
   return a;
