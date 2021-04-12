@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Get full URL of repository
+## Get full URL of repository.
 host="${VCS_HOST:=github.com}"
 protocol="${VCS_PROTOCOL:=https:}"
 username="${VCS_USERNAME:=$GITHUB_USERNAME}"

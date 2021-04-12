@@ -5,25 +5,34 @@ const path = require('path');
 const htmlEntities = require('html-entities');
 const markdownToText = require('markdown-to-text').default;
 
+const HELP_URL_GEX = 'https://github.com/tj/git-extras/blob/master/Commands.md#git-${name}';
+const HELP_URL_GEC = 'https://github.com/unixorn/git-extra-commands/blob/master/README.md';
+const HELP_URL_GEI = 'https://github.com/nodef/extra-git/wiki/${name}';
 const RDESC_GEX_ETC = /^\s+\"([\w-]+):\s*(.*?)\"(?:\s*\\)$/gm;
 const RDESC_GEX_MAN = /^\s+-\s+\*\*([\w-]+)\(\d\)\*\*\s(.*)$/gm;
 const RDESC_GEC     = /^\| +`([^`\s=]+)[^`]*`\s+(?:\|[^|]+)?\| *([^\n]*) *\|$/gm;
-const RNOT_TEXT = /[^\w\s\'\(\)-\/]/g;
+const RNOT_TEXT = /[^\w\s\'\(\)-\/]|\s*\.?\s*$/g;
 const RSHE_BANG = /^(#!\s*\S+\s+\S+)\n*/;
-const HELP_PAD  = 32;
+const HELP_NAME_SIZE = 32;
+const HELP_DESC_SIZE = 64;
 
 
+
+
+function stringLimit(x, n) {
+  return x.length <= n? x : x.substring(0, n-4)+' ...';
+}
 
 function readFile(f) {
   var d = fs.readFileSync(f, 'utf8');
   return d.replace(/\r?\n/g, '\n');
 }
 
-
 function writeFile(f, d) {
   d = d.replace(/\r?\n/g, os.EOL);
   fs.writeFileSync(f, d);
 }
+
 
 
 function fetchSuper(url) {
@@ -32,52 +41,41 @@ function fetchSuper(url) {
   return cwd;
 }
 
-
 function cleanSuper(dir) {
   cp.execSync(`rm -rf "${dir}"`);
 }
 
 
-function readDescGexEtc(dir) {
-  var f = path.join(dir, 'etc', 'git-extras.fish');
-  var d = readFile(f), m, a = new Map();
-  while ((m=RDESC_GEX_ETC.exec(d)) != null)
-    a.set(m[1], m[2]);
+
+function readDescRe(re, pth) {
+  var d = readFile(pth), m, a = new Map();
+  while ((m=re.exec(d)) != null)
+    a.set(m[1].replace(/^git-/g, ''), m[2].replace(RNOT_TEXT, '')+'.');
   return a;
 }
-
-
-function readDescGexMan(dir) {
-  var f = path.join(dir, 'man', 'git-extras.md');
-  var d = readFile(f), m, a = new Map();
-  while ((m=RDESC_GEX_MAN.exec(d)) != null)
-    a.set(m[1].replace(/^git-/g, ''), m[2].replace(RNOT_TEXT, ''));
-  return a;
-}
-
 
 function readDescGex(dir) {
-  var a = readDescGexEtc(dir);
-  var b = readDescGexMan(dir);
-  console.log(a);
-  console.log(b);
-  return new Map([...readDescGexEtc(dir), ...readDescGexMan(dir)]);
+  var etc = readDescRe(RDESC_GEX_ETC, `${dir}/etc/git-extras.fish`);
+  var man = readDescRe(RDESC_GEX_MAN, `${dir}/man/git-extras.md`);
+  return new Map([...etc, ...man]);
 }
-
 
 function readDesc(dir, name) {
   if (name === 'git-extras') return readDescGex(dir);
-  return readDescGec(dir);
+  return readDescRe(RDESC_GEC, `${dir}/README.md`);
 }
 
-
-function readDescGec(dir) {
-  var f = path.join(dir, 'README.md');
-  var d = readFile(f), m, a = new Map();
-  while ((m=RDESC_GEC.exec(d)) != null)
-    a.set(m[1].replace(/^git-/g, ''), m[2].replace(RNOT_TEXT, ''));
+function readDescBin() {
+  var a = new Map();
+  for (var f of fs.readdirSync('bin')) {
+    var d = readFile(`bin/${f}`);
+    var name = f.replace(/\..*/, '');
+    var desc = d.match(/^##\s*(.*)$/m)[1];
+    a.set(name, desc);
+  }
   return a;
 }
+
 
 
 function copyBin(dir, desc, msg) {
@@ -116,35 +114,53 @@ function copyLicense(dir, name) {
 }
 
 
+
 function readHelp() {
   var a = '';
-  for (var f of fs.readdirSync('bin')) {
-    var d = readFile(`bin/${f}`);
-    var name = f.replace(/\..*/, '');
-    if (!d.match(/^##\s+(.*)$/m)) console.log(d);
-    var desc = d.match(/^##\s+(.*)$/m)[1];
-    a += ` ${name.padEnd(HELP_PAD)} ${desc}\n`;
-  }
+  for (var [name, desc] of readDescBin())
+    a += ` ${name.padEnd(HELP_NAME_SIZE)} ${desc}\n`;
   var d = readFile('man/help.txt');
   return d.replace('${commands}', a);
 }
 
 
-function copy(url) {
+function readIndex(gei, gex, gec) {
+  var a = '';
+  var names = [...gei.keys(), ...gex.keys(), ...gec.keys()].sort();
+  for (var name of names) {
+    var desc = gei.get(name)||gex.get(name)||gec.get(name);
+    a += `| [${name}] | ${stringLimit(desc, HELP_DESC_SIZE)} |\n`;
+  }
+  a += `\n\n`;
+  for (var name of gec.keys())
+    a += `[${name}]: ${HELP_URL_GEC.replace('${name}', name)}\n`;
+  for (var name of gex.keys())
+    a += `[${name}]: ${HELP_URL_GEX.replace('${name}', name)}\n`;
+  for (var name of gei.keys())
+    a += `[${name}]: ${HELP_URL_GEI.replace('${name}', name)}\n`;
+  return a;
+}
+
+
+
+function copy(url, f=true) {
   var name = url.replace(/.*\//, '');
   var msg = `## Source: ${name}`;
   var dir  = fetchSuper(url);
   var desc = readDesc(dir, name);
-  copyBin(dir, desc, msg);
-  copyMan(dir);
-  copyLicense(dir, name);
+  if (f) copyBin(dir, desc, msg);
+  if (f) copyMan(dir);
+  if (f) copyLicense(dir, name);
   cleanSuper(dir);
+  return desc;
 }
 
 
-function main() {
-  copy('https://github.com/unixorn/git-extra-commands');
-  copy('https://github.com/tj/git-extras');
-  writeFile('man/help.txt', readHelp());
+function main(f=true) {
+  var gei = readDescBin();
+  var gec = copy('https://github.com/unixorn/git-extra-commands', f);
+  var gex = copy('https://github.com/tj/git-extras', f);
+  if (f) writeFile('man/help.txt', readHelp());
+  writeFile('index.log', readIndex(gei, gex, gec));
 }
-main();
+main(process.argv[2] !== 'local');

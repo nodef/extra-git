@@ -251,7 +251,7 @@ $ egit ignored
 <br>
 <br>
 
-[![](https://img.youtube.com/vi/7enua6W7QP0/maxresdefault.jpg)](https://www.youtube.com/watch?v=7enua6W7QP0)
+[![](https://img.youtube.com/vi/Nzr4qG_yZHU/maxresdefault.jpg)](https://www.youtube.com/watch?v=Nzr4qG_yZHU)
 
 [Git]: https://git-scm.com
 ["git-extras"]: https://github.com/tj/git-extras
