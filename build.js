@@ -46,6 +46,19 @@ function writeFile(f, d) {
 }
 
 
+function readJson(pth) {
+  var pth = pth||'package.json';
+  var d = readFile(pth)||'{}';
+  return JSON.parse(d);
+}
+
+function writeJson(pth, v) {
+  var pth = pth||'package.json';
+  var d = JSON.stringify(v, null, 2)+'\n';
+  writeFile(pth, d);
+}
+
+
 
 function fetchSuper(url) {
   var cwd = fs.mkdtempSync('temp-');
@@ -153,6 +166,24 @@ function readIndex(gei, gex, gec) {
 }
 
 
+function readKeywords(gei, gex, gec) {
+  var a = '';
+  var names = [...gei.keys(), ...gex.keys(), ...gec.keys()].sort();
+  for (var name of names) {
+    var desc = gei.get(name)||gex.get(name)||gec.get(name);
+    a += `| [${name}] | ${stringLimit(desc, HELP_DESC_SIZE)} |\n`;
+  }
+  a += `\n\n`;
+  for (var name of gec.keys())
+    a += `[${name}]: ${HELP_URL_GEC.replace('${name}', name)}\n`;
+  for (var name of gex.keys())
+    a += `[${name}]: ${HELP_URL_GEX.replace('${name}', name)}\n`;
+  for (var name of gei.keys())
+    a += `[${name}]: ${HELP_URL_GEI.replace('${name}', name)}\n`;
+  return a;
+}
+
+
 
 function copy(url, f=true) {
   var name = url.replace(/.*\//, '');
@@ -174,5 +205,8 @@ function main(f=true) {
   if (f) copyMan('wiki');
   if (f) writeFile('man/help.txt', readHelp());
   writeFile('index.log', readIndex(gei, gex, gec));
+  var p = readJson('package.json');
+  p.keywords = [...new Set([...p.keywords, ...gei.keys(), ...gec.keys(), ...gex.keys()])];
+  writeJson('package.json', p);
 }
 main(process.argv[2] !== 'local');
