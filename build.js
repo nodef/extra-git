@@ -23,6 +23,18 @@ function stringLimit(x, n) {
   return x.length <= n? x : x.substring(0, n-4)+' ...';
 }
 
+function stringAlign(x, n, s) {
+  var a = '';
+  for (var i=0; i<x.length; i+=n) {
+    if (a) a += ' '.repeat(s);
+    a += x.substring(i, i+n);
+  }
+  return a;
+}
+
+
+
+
 function readFile(f) {
   var d = fs.readFileSync(f, 'utf8');
   return d.replace(/\r?\n/g, '\n');
@@ -115,9 +127,9 @@ function copyLicense(pth, name) {
 
 
 function readHelp() {
-  var a = '';
+  var a = '', ns = HELP_NAME_SIZE, ds = HELP_DESC_SIZE;
   for (var [name, desc] of readDescBin())
-    a += ` ${name.padEnd(HELP_NAME_SIZE)} ${stringLimit(desc, HELP_DESC_SIZE)}\n`;
+    a += ` ${name.padEnd(ns)} ${stringAlign(desc, ds, 2+ns)}\n`;
   var d = readFile('man/help.txt');
   return d.replace('${commands}', a);
 }
