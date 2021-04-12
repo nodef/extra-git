@@ -5,10 +5,9 @@ const path = require('path');
 const htmlEntities = require('html-entities');
 const markdownToText = require('markdown-to-text').default;
 
-const SUPER_URL = 'https://github.com/tj/git-extras';
-const SUPER_MSG = '# Source: git-extras';
-const RDESC_ETC = /^\s+\"([\w-]+):\s*(.*?)\"(?:\s*\\)$/gm;
-const RDESC_MAN = /^\s+-\s+\*\*([\w-]+)\(\d\)\*\*\s(.*)$/gm;
+const RDESC_GEX_ETC = /^\s+\"([\w-]+):\s*(.*?)\"(?:\s*\\)$/gm;
+const RDESC_GEX_MAN = /^\s+-\s+\*\*([\w-]+)\(\d\)\*\*\s(.*)$/gm;
+const RDESC_GEC     = /^\|\s+`([^`]+)`\s+\|[^|]+\|\s*(.*?)\s*\|$/gm;
 const RNOT_TEXT = /[^\w\s\'\(\)-\/]/g;
 const RSHE_BANG = /^(#!\S+\s+\S+)\n*/;
 
@@ -27,9 +26,9 @@ function writeFile(f, d) {
 }
 
 
-function fetchSuper() {
+function fetchSuper(url) {
   var cwd = fs.mkdtempSync('temp-');
-  cp.execSync(`git clone ${SUPER_URL} .`, {cwd});
+  cp.execSync(`git clone ${url} .`, {cwd});
   return cwd;
 }
 
@@ -39,30 +38,45 @@ function cleanSuper(dir) {
 }
 
 
-function readDescEtc(dir) {
+function readDescGexEtc(dir) {
   var f = path.join(dir, 'etc', 'git-extras.fish');
   var d = readFile(f), m, a = new Map();
-  while ((m=RDESC_ETC.exec(d)) != null)
+  while ((m=RDESC_GEX_ETC.exec(d)) != null)
     a.set(m[1], m[2]);
   return a;
 }
 
 
-function readDescMan(dir) {
+function readDescGexMan(dir) {
   var f = path.join(dir, 'man', 'git-extras.md');
   var d = readFile(f), m, a = new Map();
-  while ((m=RDESC_MAN.exec(d)) != null)
+  while ((m=RDESC_GEX_MAN.exec(d)) != null)
     a.set(m[1], m[2].replace(RNOT_TEXT, ''));
   return a;
 }
 
 
-function readDesc(dir) {
-  return readDescEtc(dir);
+function readDescGex(dir) {
+  return readDescGexEtc(dir);
 }
 
 
-function copyBin(dir, desc) {
+function readDesc(dir, name) {
+  if (name === 'git-extras') return readDescGex(dir);
+  return readDescGec(dir);
+}
+
+
+function readDescGec(dir) {
+  var f = path.join(dir, 'README.md');
+  var d = readFile(f), m, a = new Map();
+  while ((m=RDESC_GEC.exec(d)) != null)
+    a.set(m[1].replace(/^git-/g, ''), m[2].replace(RNOT_TEXT, ''));
+  return a;
+}
+
+
+function copyBin(dir, desc, msg) {
   fs.mkdirSync('bin', {recursive: true});
   var bin = path.join(dir, 'bin');
   for (var f of fs.readdirSync(bin)) {
@@ -70,7 +84,7 @@ function copyBin(dir, desc) {
     var g = f.replace(/^git-/g, '');
     var d = readFile(`${bin}/${f}`);
     var c = desc.get(g)||'';
-    d = d.replace(RSHE_BANG, `$1\n## ${c}\n${SUPER_MSG}\n\n`)
+    d = d.replace(RSHE_BANG, `$1\n## ${c}\n${msg}\n\n`)
     writeFile(`bin/${g}.sh`, d);
   }
 }
@@ -79,6 +93,7 @@ function copyBin(dir, desc) {
 function copyMan(dir) {
   fs.mkdirSync('man', {recursive: true});
   var man = path.join(dir, 'man');
+  if (!fs.existsSync(man)) return;
   for (var f of fs.readdirSync(man)) {
     if (path.extname(f) !== '.md') continue;
     if (f === 'git-extras.md') continue;
@@ -97,12 +112,20 @@ function copyLicense(dir, name) {
 }
 
 
-function main() {
-  var dir  = fetchSuper();
-  var desc = readDesc(dir);
-  copyBin(dir, desc);
+function copy(url) {
+  var name = url.replace(/.*\//, '');
+  var msg = `## Source: ${name}`;
+  var dir  = fetchSuper(url);
+  var desc = readDesc(dir, name);
+  copyBin(dir, desc, msg);
   copyMan(dir);
-  copyLicense(dir, 'git-extras');
+  copyLicense(dir, name);
   cleanSuper(dir);
+}
+
+
+function main() {
+  copy('https://github.com/unixorn/git-extra-commands');
+  copy('https://github.com/tj/git-extras');
 }
 main();
