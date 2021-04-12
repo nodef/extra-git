@@ -3,4 +3,4 @@
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 fil="$dir/../man/$1.txt"
 
-if [ -f "$fil" ]; then cat "$fil"; else git help "$1"; fi
+if [ -f "$fil" ]; then cat "$fil"; else cat "$dir/../man/help.txt"; fi

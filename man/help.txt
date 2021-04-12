@@ -1,0 +1,6 @@
+Common utility commands for Git repositories.
+
+${commands}
+
+If you need command details, use `egit help <command>`.
+Or else see https://github.com/nodef/extra-git.

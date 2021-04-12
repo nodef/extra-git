@@ -7,10 +7,10 @@ const markdownToText = require('markdown-to-text').default;
 
 const RDESC_GEX_ETC = /^\s+\"([\w-]+):\s*(.*?)\"(?:\s*\\)$/gm;
 const RDESC_GEX_MAN = /^\s+-\s+\*\*([\w-]+)\(\d\)\*\*\s(.*)$/gm;
-const RDESC_GEC     = /^\|\s+`([^`]+)`\s+\|[^|]+\|\s*(.*?)\s*\|$/gm;
+const RDESC_GEC     = /^\| +`([^`\s=]+)[^`]*`\s+(?:\|[^|]+)?\| *([^\n]*) *\|$/gm;
 const RNOT_TEXT = /[^\w\s\'\(\)-\/]/g;
-const RSHE_BANG = /^(#!\S+\s+\S+)\n*/;
-
+const RSHE_BANG = /^(#!\s*\S+\s+\S+)\n*/;
+const HELP_PAD  = 32;
 
 
 
@@ -112,6 +112,20 @@ function copyLicense(dir, name) {
 }
 
 
+function readHelp() {
+  var a = '';
+  for (var f of fs.readdirSync('bin')) {
+    var d = readFile(`bin/${f}`);
+    var name = f.replace(/\..*/, '');
+    if (!d.match(/^##\s+(.*)$/m)) console.log(d);
+    var desc = d.match(/^##\s+(.*)$/m)[1];
+    a += ` ${name.padEnd(HELP_PAD)} ${desc}\n`;
+  }
+  var d = readFile('man/help.txt');
+  return d.replace('${commands}', a);
+}
+
+
 function copy(url) {
   var name = url.replace(/.*\//, '');
   var msg = `## Source: ${name}`;
@@ -127,5 +141,6 @@ function copy(url) {
 function main() {
   copy('https://github.com/unixorn/git-extra-commands');
   copy('https://github.com/tj/git-extras');
+  writeFile('man/help.txt', readHelp());
 }
 main();
