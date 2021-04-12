@@ -80,11 +80,10 @@ function readDescBin() {
 
 function copyBin(dir, desc, msg) {
   fs.mkdirSync('bin', {recursive: true});
-  var bin = path.join(dir, 'bin');
-  for (var f of fs.readdirSync(bin)) {
+  for (var f of fs.readdirSync(dir)) {
     if (f === 'git-extras') continue;
     var g = f.replace(/^git-/g, '');
-    var d = readFile(`${bin}/${f}`);
+    var d = readFile(`${dir}/${f}`);
     var c = desc.get(g)||'';
     d = d.replace(RSHE_BANG, `$1\n## ${c}\n${msg}\n\n`)
     writeFile(`bin/${g}.sh`, d);
@@ -94,14 +93,14 @@ function copyBin(dir, desc, msg) {
 
 function copyMan(dir) {
   fs.mkdirSync('man', {recursive: true});
-  var man = path.join(dir, 'man');
-  if (!fs.existsSync(man)) return;
-  for (var f of fs.readdirSync(man)) {
+  if (!fs.existsSync(dir)) return;
+  for (var f of fs.readdirSync(dir)) {
     if (path.extname(f) !== '.md') continue;
     if (f === 'git-extras.md') continue;
     if (f === 'Readme.md') continue;
+    if (f === 'Home.md') continue;
     var g = f.replace(/^git-|\.md$/g, '');
-    var d = readFile(`${man}/${f}`);
+    var d = readFile(`${dir}/${f}`);
     d = markdownToText(d);
     d = htmlEntities.decode(d);
     writeFile(`man/${g}.txt`, d);
@@ -109,8 +108,8 @@ function copyMan(dir) {
 }
 
 
-function copyLicense(dir, name) {
-  cp.execSync(`cp -f "${dir}/LICENSE" "LICENSE-${name}"`);
+function copyLicense(pth, name) {
+  cp.execSync(`cp -f "${pth}" "LICENSE-${name}"`);
 }
 
 
@@ -148,9 +147,9 @@ function copy(url, f=true) {
   var msg = `## Source: ${name}`;
   var dir  = fetchSuper(url);
   var desc = readDesc(dir, name);
-  if (f) copyBin(dir, desc, msg);
-  if (f) copyMan(dir);
-  if (f) copyLicense(dir, name);
+  if (f) copyBin(`${dir}/bin`, desc, msg);
+  if (f) copyMan(`${dir}/man`);
+  if (f) copyLicense(`${dir}/LICENSE`, name);
   cleanSuper(dir);
   return desc;
 }
@@ -160,6 +159,7 @@ function main(f=true) {
   var gei = readDescBin();
   var gec = copy('https://github.com/unixorn/git-extra-commands', f);
   var gex = copy('https://github.com/tj/git-extras', f);
+  if (f) copyMan('wiki');
   if (f) writeFile('man/help.txt', readHelp());
   writeFile('index.log', readIndex(gei, gex, gec));
 }
