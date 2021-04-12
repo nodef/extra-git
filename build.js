@@ -57,7 +57,11 @@ function readDescGexMan(dir) {
 
 
 function readDescGex(dir) {
-  return readDescGexEtc(dir);
+  var a = readDescGexEtc(dir);
+  var b = readDescGexMan(dir);
+  console.log(a);
+  console.log(b);
+  return new Map([...readDescGexEtc(dir), ...readDescGexMan(dir)]);
 }
 
 

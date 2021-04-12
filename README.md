@@ -72,6 +72,25 @@ $ egit ignored
 | [is]     | Checks if value is boolean.                |
 
 
+branches
+commit-count
+commits-per-day
+compact
+find-dirty
+github-open
+history-eraser
+mark-all-resolved
+nuke-untracked-files
+rebase-work-in-progress
+rscp
+stashes
+taglist
+tags
+unlock
+unpushed-stat
+up-old
+utimes
+
 [Git]: https://git-scm.com
 ["git-extras"]: https://github.com/tj/git-extras
 ["git-extra-commands"]: https://github.com/unixorn/git-extra-commands
