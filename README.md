@@ -41,11 +41,11 @@ $ egit authors --list --no-email
 
 
 # Merge commits from src-branch into the current branch as a single commit
-$ git squash fixed-cursor-styling
-$ git squash fixed-cursor-styling "Fixed cursor styling"
-$ git squash 95b7c52
-$ git squash HEAD~3
-$ git squash HEAD~3 "Work on a feature"
+$ egit squash fixed-cursor-styling
+$ egit squash fixed-cursor-styling "Fixed cursor styling"
+$ egit squash 95b7c52
+$ egit squash HEAD~3
+$ egit squash HEAD~3 "Work on a feature"
 
 
 
