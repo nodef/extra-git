@@ -2,6 +2,7 @@ const fs = require('fs');
 const os = require('os');
 const cp = require('child_process');
 const path = require('path');
+const htmlEntities = require('html-entities');
 const markdownToText = require('markdown-to-text').default;
 
 const SUPER_URL = 'https://github.com/tj/git-extras';
@@ -83,6 +84,7 @@ function copyMan(dir) {
     var g = f.replace(/^git-|\.md$/g, '');
     var d = readFile(`${man}/${f}`);
     d = markdownToText(d);
+    d = htmlEntities.decode(d);
     writeFile(`man/${g}.txt`, d);
   }
 }
