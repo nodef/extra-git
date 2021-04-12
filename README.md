@@ -246,6 +246,15 @@ $ egit ignored
 <br>
 <br>
 
+
+## References
+
+- ["git-extras"]
+- ["git-extra-commands"]
+
+<br>
+<br>
+
 [![](https://img.youtube.com/vi/Nzr4qG_yZHU/maxresdefault.jpg)](https://www.youtube.com/watch?v=Nzr4qG_yZHU)
 
 [Git]: https://git-scm.com
