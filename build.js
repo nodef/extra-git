@@ -6,10 +6,10 @@ const htmlEntities = require('html-entities');
 const markdownToText = require('markdown-to-text').default;
 
 const SUPER_URL = 'https://github.com/tj/git-extras';
-const RDESCETC = /^\s+\"([\w-]+):\s*(.*?)\"(?:\s*\\)$/gm;
-const RDESCMAN = /^\s+-\s+\*\*([\w-]+)\(\d\)\*\*\s(.*)$/gm;
-const RNOTTEXT = /[^\w\s\'\(\)-\/]/g;
-const RSHEBANG = /^(#!\S+\s+\S+)\n*/;
+const RDESC_ETC = /^\s+\"([\w-]+):\s*(.*?)\"(?:\s*\\)$/gm;
+const RDESC_MAN = /^\s+-\s+\*\*([\w-]+)\(\d\)\*\*\s(.*)$/gm;
+const RNOT_TEXT = /[^\w\s\'\(\)-\/]/g;
+const RSHE_BANG = /^(#!\S+\s+\S+)\n*/;
 
 
 
@@ -41,7 +41,7 @@ function cleanSuper(dir) {
 function readDescEtc(dir) {
   var f = path.join(dir, 'etc', 'git-extras.fish');
   var d = readFile(f), m, a = new Map();
-  while ((m=RDESCETC.exec(d)) != null)
+  while ((m=RDESC_ETC.exec(d)) != null)
     a.set(m[1], m[2]);
   return a;
 }
@@ -50,8 +50,8 @@ function readDescEtc(dir) {
 function readDescMan(dir) {
   var f = path.join(dir, 'man', 'git-extras.md');
   var d = readFile(f), m, a = new Map();
-  while ((m=RDESCMAN.exec(d)) != null)
-    a.set(m[1], m[2].replace(RNOTTEXT, ''));
+  while ((m=RDESC_MAN.exec(d)) != null)
+    a.set(m[1], m[2].replace(RNOT_TEXT, ''));
   return a;
 }
 
@@ -69,7 +69,7 @@ function copyBin(dir, desc) {
     var g = f.replace(/^git-/g, '');
     var d = readFile(`${bin}/${f}`);
     var c = desc.get(g)||'';
-    d = d.replace(RSHEBANG, `$1\n## ${c}\n\n`)
+    d = d.replace(RSHE_BANG, `$1\n## ${c}\n\n`)
     writeFile(`bin/${g}.sh`, d);
   }
 }
@@ -91,11 +91,17 @@ function copyMan(dir) {
 }
 
 
+function copyLicense(dir, name) {
+  cp.execSync(`cp -f "${dir}/LICENSE" "LICENSE-${name}"`);
+}
+
+
 function main() {
   var dir  = fetchSuper();
   var desc = readDesc(dir);
   copyBin(dir, desc);
   copyMan(dir);
+  copyLicense(dir, 'git-extras');
   cleanSuper(dir);
 }
 main();
