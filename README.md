@@ -1,1 +1,1 @@
-GIT utilities -- repo summary, repl, changelog population, author commit percentages and more.
+Common utility commands for Git repositories.

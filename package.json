@@ -1,7 +1,7 @@
 {
   "name": "extra-git",
-  "version": "0.0.7",
-  "description": "Commonly utility commands with Git.",
+  "version": "0.0.8",
+  "description": "Common utility commands for Git repositories.",
   "preferGlobal": true,
   "main": "index.sh",
   "bin": {
