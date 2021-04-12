@@ -51,7 +51,7 @@ function readDescGexMan(dir) {
   var f = path.join(dir, 'man', 'git-extras.md');
   var d = readFile(f), m, a = new Map();
   while ((m=RDESC_GEX_MAN.exec(d)) != null)
-    a.set(m[1], m[2].replace(RNOT_TEXT, ''));
+    a.set(m[1].replace(/^git-/g, ''), m[2].replace(RNOT_TEXT, ''));
   return a;
 }
 

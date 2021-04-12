@@ -67,9 +67,8 @@ $ egit ignored
 
 ## Index
 
-| Name                         | Action                                                                                                                                                                                                                                               |
+| Command                      | Action                                                                                                                                                                                                                                               |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [is]                         | Checks if value is boolean.                                                                                                                                                                                                                          |
 | add-submodule                | Add submodule to repository.                                                                                                                                                                                                                         |
 | add-username-remote          | Adds a remote for the current repository for the given github username.                                                                                                                                                                              |
 | alias                        | Define, search and show aliases.                                                                                                                                                                                                                     |
