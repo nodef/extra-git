@@ -81,6 +81,7 @@ function copyMan(dir) {
   for (var f of fs.readdirSync(man)) {
     if (path.extname(f) !== '.md') continue;
     if (f === 'git-extras.md') continue;
+    if (f === 'Readme.md') continue;
     var g = f.replace(/^git-|\.md$/g, '');
     var d = readFile(`${man}/${f}`);
     d = markdownToText(d);
