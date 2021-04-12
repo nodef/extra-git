@@ -1,7 +1,7 @@
 {
   "name": "extra-git",
-  "version": "0.0.3",
-  "description": "GIT utilities -- repo summary, repl, changelog population, author commit percentages and more.",
+  "version": "0.0.4",
+  "description": "Commonly used utility commands with Git.",
   "private": true,
   "main": "index.js",
   "scripts": {
