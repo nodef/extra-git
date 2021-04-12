@@ -13,7 +13,7 @@ const RDESC_GEX_MAN = /^\s+-\s+\*\*([\w-]+)\(\d\)\*\*\s(.*)$/gm;
 const RDESC_GEC     = /^\| +`([^`\s=]+)[^`]*`\s+(?:\|[^|]+)?\| *([^\n]*) *\|$/gm;
 const RNOT_TEXT = /[^\w\s\'\(\)-\/]|\s*\.?\s*$/g;
 const RSHE_BANG = /^(#!\s*\S+\s+\S+)\n*/;
-const HELP_NAME_SIZE = 32;
+const HELP_NAME_SIZE = 26;
 const HELP_DESC_SIZE = 64;
 
 
@@ -117,7 +117,7 @@ function copyLicense(pth, name) {
 function readHelp() {
   var a = '';
   for (var [name, desc] of readDescBin())
-    a += ` ${name.padEnd(HELP_NAME_SIZE)} ${desc}\n`;
+    a += ` ${name.padEnd(HELP_NAME_SIZE)} ${stringLimit(desc, HELP_DESC_SIZE)}\n`;
   var d = readFile('man/help.txt');
   return d.replace('${commands}', a);
 }
