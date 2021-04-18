@@ -108,6 +108,7 @@ function copyBin(dir, desc, msg) {
   for (var f of fs.readdirSync(dir)) {
     if (f === 'git-extras') continue;
     var g = f.replace(/^git-/g, '');
+    if (fs.existsSync(`bin/${g}.sh`)) continue;
     var d = readFile(`${dir}/${f}`);
     var c = desc.get(g)||'';
     d = d.replace(RSHE_BANG, `$1\n## ${c}\n${msg}\n\n`)
@@ -125,6 +126,7 @@ function copyMan(dir) {
     if (f === 'Readme.md') continue;
     if (f === 'Home.md') continue;
     var g = f.replace(/^git-|\.md$/g, '');
+    if (fs.existsSync(`man/${g}.txt`)) continue;
     var d = readFile(`${dir}/${f}`);
     d = markdownToText(d);
     d = htmlEntities.decode(d);
@@ -200,8 +202,8 @@ function copy(url, f=true) {
 
 function main(f=true) {
   var gei = readDescBin();
-  var gec = copy('https://github.com/unixorn/git-extra-commands', f);
   var gex = copy('https://github.com/tj/git-extras', f);
+  var gec = copy('https://github.com/unixorn/git-extra-commands', f);
   if (f) copyMan('wiki');
   if (f) writeFile('man/help.txt', readHelp());
   writeFile('index.log', readIndex(gei, gex, gec));
