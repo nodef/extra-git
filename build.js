@@ -200,6 +200,12 @@ function copy(url, f=true) {
 }
 
 
+function makeExec() {
+  cp.execSync(`chmod +x bin/*`);
+  cp.execSync(`chmod +x index.sh`);
+}
+
+
 function main(f=true) {
   var gei = readDescBin();
   var gex = copy('https://github.com/tj/git-extras', f);
@@ -210,5 +216,6 @@ function main(f=true) {
   var p = readJson('package.json');
   p.keywords = [...new Set([...p.keywords, ...gei.keys(), ...gec.keys(), ...gex.keys()])];
   writeJson('package.json', p);
+  makeExec();
 }
 main(process.argv[2] !== 'local');
