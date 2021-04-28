@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Commit current changes and push (inc. submodules).
-dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+dir="$(dirname "$(readlink -f "$0")")"
 prefix="$GIT_COMMIT_PREFIX"
 
 "$dir/cpush-submodules.sh" "$@"

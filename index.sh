@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Common utility commands for Git repositories.
-dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+dir="$(dirname "$(readlink -f "$0")")"
 
 cmd="$dir/bin/$1.sh"
 if   [[ "$2" == "--help" ]]; then "$dir/bin/help.sh" "$1"

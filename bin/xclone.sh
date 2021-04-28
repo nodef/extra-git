@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Clone repository to local (inc. submodules).
-dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+dir="$(dirname "$(readlink -f "$0")")"
 
 
 url="$( "$dir/url.sh" "$1" )"
