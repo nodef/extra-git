@@ -251,6 +251,7 @@ $ egit ignored
 
 - ["git-extras"]
 - ["git-extra-commands"]
+- [Get path of current script when executed through a symlink](https://unix.stackexchange.com/a/17500/166668)
 
 <br>
 <br>
