@@ -69,33 +69,42 @@ $ egit ignored
 
 | Command         | Action                       |
 | --------------- | ---------------------------- |
+| [abort] | Abort current git operation. |
 | [add-submodule] | Add submodule to repository. |
-| [add-username-remote] | Adds a remote for the current repository for the given githu ... |
+| [add-username-remote] | Adds a remote for the current repository for the given GitHu ... |
 | [age] | A git-blame viewer, written using PyGTK. |
 | [ahead-of-master] | Show commits that haven't made it to master yet. |
 | [alias] | Define, search and show aliases. |
 | [apush] | Amend current changes and push (inc. submodules). |
 | [apush-submodules] | Amend current changes and push all submodules. |
 | [archive-file] | Export the current HEAD of the git repository to an archive. |
-| [attic] | Displays a list of deleted files in your repo. The output is ... |
+| [attic] | Displays a list of deleted files in your repository. The out ... |
 | [authors] | Generate authors report. |
-| [big-file] | Show files in the repo larger than a threshold size. |
+| [authors] | Generate authors report. |
+| [big-file] | Show files in the repository larger than a threshold size. |
 | [branch-name] | Prints the current branch name in automation-friendly format. |
 | [branch-rebaser] | Kicks off an interactive rebase of all the commits on your b ... |
+| [branches-that-touch] | Shows which branches touch files under a path that are remot ... |
 | [browse] | View the web page for the current repository. |
 | [brv] | List branches sorted by their last commit date. |
 | [bulk] | Run git commands on multiple repositories. |
 | [change-author] | Change one author/email in the history to another. |
 | [change-log] | Transform git log output into a complete Changelog for proje ... |
 | [changelog] | Generate a changelog report. |
-| [changes] | List authors in the repo in descending commit-count order. |
+| [changes] | Symlink to git-authors. List authors in the repository in de ... |
+| [checkout-by-date] | Lets you checkout several files at once at the version speci ... |
+| [checkout-commit] | Uses fzf(https//github.com/junegunn/fzf) to checkout a commi ... |
+| [checkout-default-branch] | Checks out the default branch of the origin remote so you do ... |
 | [checkout-pr] | Check out a PR locally. |
+| [checkout-preview] | Uses fzf(https//github.com/junegunn/fzf) to checkout a branc ... |
+| [children-of] | Shows the children of a given git commit. |
 | [churn] | Show which files are getting changed most often in the repos ... |
 | [clear] | Rigorously clean up a repository. |
 | [clear-soft] | Soft clean up a repository. |
 | [clone-subset] | Uses git clone and git filter-branch to remove from the clon ... |
 | [coauthor] | Add a co-author to the last commit. |
 | [comma] | Adds and commits a file in one command. |
+| [commit-browser] | Uses fzf(https//github.com/junegunn/fzf) to browse commit hi ... |
 | [commits-since] | Show commit logs since some date. |
 | [conflicts] | Show files with conflicts. |
 | [contrib] | Show user's contributions. |
@@ -106,12 +115,16 @@ $ egit ignored
 | [cpush-submodules] | Commit current changes and push all submodules. |
 | [create-branch] | Create branches. |
 | [credit] | Quicker way to assign credit to another author on the latest ... |
-| [current-branch] | Prints the name of the current branch, mainly useful in auto ... |
+| [current-branch] | Prints the name of the current branch with no odd characters ... |
 | [cut-branch] | Create a new branch pointed at **HEAD** and reset the curren ... |
+| [default-branch] | Get default branch (local) of repository. |
 | [delete-branch] | Delete branches. |
+| [delete-dangling-commits] | Clean up dangling commits that are not on any branch. |
 | [delete-local-merged] | Delete all local branches that have been merged into **HEAD**. |
 | [delete-merged-branches] | Delete merged branches. |
 | [delete-merged-branches] | Delete merged branches. |
+| [delete-squashed-and-merged-branches] | Purges all branches that have been squashed and merged to a  ... |
+| [delete-squashed-branches] | Delete branches that were squashed. |
 | [delete-submodule] | Delete submodules. |
 | [delete-tag] | Delete tags. |
 | [delete-tag] | Delete tags. |
@@ -121,15 +134,21 @@ $ egit ignored
 | [edit-conflicts] | Edit the files that are marked as conflicted during a merge/ ... |
 | [effort] | Show effort statistics on file(s). |
 | [feature] | Create/Merge feature branch. |
-| [fetch-pull-requests] | Fetch pull requests from github so you can git checkout pull ... |
+| [fetch-prs] | Get all Pull Request branches as local remote branches by re ... |
+| [fetch-pull-requests] | Fetch pull requests from GitHub so you can git checkout pull ... |
+| [files] | List the files different between the current branch and REVI ... |
 | [find-dirty] | . |
-| [flush] | Compact your reposistory by dropping all reflogs, stashes, a ... |
+| [flush] | Compact your repository by dropping all reflogs, stashes, an ... |
 | [force-clone] | overwrite local repositories with clone. |
-| [force-mtimes] | Sets mtimes of all files in the reprository their last chang ... |
+| [force-mtimes] | Sets modification times of all files in the repository their ... |
 | [forest] | Prints a text-based tree visualisation of your repository. R ... |
 | [fork] | Fork a repo on github. |
 | [fresh-branch] | Create fresh branches. |
-| [functionlog] | Allows you to get a log of a particular function, not a file. |
+| [functionlog] | Allows you to get a git log of a particular function, not a  ... |
+| [fzf-add] | Use fzf(https//github.com/junegunn/fzf) to select files to a ... |
+| [fzf-log-browser] | Use fzf(https//github.com/junegunn/fzf) to browse the reposi ... |
+| [fzf-pickaxe-browser] | Use fzf(https//github.com/junegunn/fzf) to display a git log ... |
+| [fzf-reflog-browser] | Use fzf(https//github.com/junegunn/fzf) to browse the reposi ... |
 | [gh-pages] | Create the GitHub Pages branch. |
 | [git] | Typing git git foo will make git do a git foo instead of com ... |
 | [github-open] | . |
@@ -137,10 +156,10 @@ $ egit ignored
 | [graft] | Merge and destroy a given branch. |
 | [guilt] | calculate change between two revisions. |
 | [help] | Print usage details of a command. |
-| [history-graph] | Pretty git log, single line per commit, with branch graphign. |
+| [history-graph] | Pretty git log, single line per commit, with branch graphing. |
 | [ignore] | Add .gitignore patterns. |
 | [ignore-io] | Get sample gitignore file. |
-| [ignored] | Show files being ignored by git in the repo. |
+| [ignored] | Show files being ignored by git in the repository. |
 | [improved-merge] | Sophisticated git merge with integrated CI check and automat ... |
 | [incoming] | Show commits in the tracking branch that are not in the loca ... |
 | [info] | Returns information on current repository. |
@@ -149,9 +168,11 @@ $ egit ignored
 | [local-commits] | List local commits. |
 | [lock] | Lock a file excluded from version control. |
 | [locked] | ls files that have been locked. |
+| [ls-branch-files] | List files changed between a specifed branch and the current ... |
 | [ls-object-refs] | Find references to an object with SHA1 in refs, commits, and ... |
+| [magic] | Automate add/commit/push routines. |
 | [maildiff] | A simple git command to email diff in color to reviewer/ co- ... |
-| [maxpack] | Compress a repo's pack files as much as possible. |
+| [maxpack] | Compress a repository's pack files as much as possible. |
 | [merge-into] | Merge one branch into another. |
 | [merge-repo] | Merge two repo histories. |
 | [missing] | Show commits missing from another branch. |
@@ -162,6 +183,8 @@ $ egit ignored
 | [nuke] | Nukes a branch locally and on the origin remote. |
 | [object-deflate] | Deflate an loose object file and write to standard output. |
 | [obliterate] | rewrite past commits to remove some files. |
+| [oldest-common-ancestor] | Finds the oldest common ancestor commit between two branches. |
+| [origin-head] | Prints the name of the origin remote's default branch. Not e ... |
 | [outgoing] | Show commits that are on the local branch that have not been ... |
 | [overwritten] | Aggregates git blame information about original owners of li ... |
 | [paste] | Send patches to pastebin for chat conversations. |
@@ -181,6 +204,7 @@ $ egit ignored
 | [rebase-authors] | Adds authorship info to interactive git rebase output. |
 | [rebase-patch] | Rebases a patch. |
 | [rebase-theirs] | Resolve rebase conflicts by favoring 'theirs' version. |
+| [recent] | Shows information about most recent commit on all local bran ... |
 | [recently-checkedout-branches] | Shows timestamp and name of recently checked-out branches in ... |
 | [ref-recent] | Shows the date, branch name, commit hash, and commit subject ... |
 | [rel] | Shows the relationship between the current branch and *ref*. ... |
@@ -195,11 +219,12 @@ $ egit ignored
 | [reset-file] | Reset one file. |
 | [reset-with-fire] | Hard reset the working directory, then zap any files not kno ... |
 | [restore-mtime] | Change mtime of files based on commit date of last change. |
-| [rm-deleted-from-repo] | Removes files you deleted with rm from the repo for you. |
+| [reup] | Like git pull but show a short and sexy log of changes after ... |
+| [rm-deleted-from-repo] | Removes files you deleted with rm from the repository for you. |
 | [root] | show path of root. |
 | [root-directory] | Prints the path to the root of the git repository you're in. |
 | [roots] | Show the root commits. |
-| [run-command-on-revisions] | Runs a given command over a range of Git revisions. |
+| [run-command-on-revisions] | Runs a given command over a range of git revisions. |
 | [scp] | Copy files to SSH compatible git-remote. |
 | [sed] | replace patterns in git-controlled files. |
 | [setup] | Set up a git repository. |
@@ -208,35 +233,38 @@ $ egit ignored
 | [show-overwritten] | Aggregates git blame information about the original owners o ... |
 | [show-tree] | show branch tree of commit history. |
 | [show-unmerged-branches] | Show unmerged branches. |
-| [shrink-repo] | Shrinks your clone of a git repo. |
+| [shrink-repo] | Shrinks your clone of a git repository. |
 | [sp] | Simple push, single short command to commit, and push. Use - ... |
 | [squash] | squash N last changes up to a ref'ed commit. |
 | [sr] | Use fzf to switch to a different git ref. |
 | [stamp] | Stamp the last commit message. |
 | [standup] | Recall the commit history. |
+| [stats] | Displays stats for the files different between the current b ... |
 | [submodule-rm] | Allows you to remove a submodule easily with git submodule-r ... |
 | [summary] | Show repository summary. |
 | [switch-branch] | Make it easier to switch to a branch by a substring of its n ... |
 | [sync] | Sync local branch with remote branch. |
 | [tag-and-sign] | Create and sign a new tag. |
+| [tag-diff] | Show the differences between local tags and ones on the remo ... |
 | [thanks] | List the contributors to a repository in descending commit o ... |
 | [touch] | Touch and add file to the index. |
 | [track] | Sets up your branch to track a remote branch. Assumes you me ... |
-| [trail] | Show all branching points in the repo's Git history so you c ... |
+| [trail] | Show all branching points in the repository's git history so ... |
 | [undelete] | Undeletes a file. |
+| [undo] | Remove latest commits. |
 | [undo] | Remove latest commits. |
 | [undo-push] | Undoes your last push to branch **1** of origin. |
 | [unlock] | Unlock a file excluded from version control. |
 | [unpushed] | Show which commits have not been pushed to the tracking bran ... |
 | [unreleased] | Shows git commits since the last tagged version. |
-| [up] | . |
+| [up] | Like git pull but show a short and sexy log of changes after ... |
 | [upstream-sync] | Fetches *upstream/yourforkname* and rebases it into your loc ... |
 | [url] | Get full URL of repository. |
 | [utimes] | Change files modification time to their last commit date. |
 | [what-the-hell-just-happened] | Show what just happened. |
 | [when-merged] | Find when a commit was merged into one or more branches. |
 | [where] | Shows where a particular commit falls between releases. |
-| [whoami] | Shows what username  email you have configured for the repo  ... |
+| [whoami] | Shows what username  email you have configured for the repos ... |
 | [winner] | Shows what authors have made the most commits, both by numbe ... |
 | [wordiness] | Shows how wordy people's commit messages are. Useful for sha ... |
 | [work-in-progress] | Starts an interactive rebase of all the commits you haven't  ... |
@@ -264,14 +292,22 @@ $ egit ignored
 [add-username-remote]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [age]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [attic]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[authors]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [big-file]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[branches-that-touch]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [branch-name]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [branch-rebaser]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [change-author]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [change-log]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [changes]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[checkout-by-date]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[checkout-commit]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[checkout-default-branch]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [checkout-pr]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[checkout-preview]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[children-of]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [churn]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[commit-browser]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [clone-subset]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [comma]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [conflicts]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
@@ -279,17 +315,25 @@ $ egit ignored
 [credit]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [current-branch]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [cut-branch]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[delete-dangling-commits]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [delete-local-merged]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [delete-merged-branches]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[delete-squashed-and-merged-branches]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [delete-tag]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [diff-last]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [divergence]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [edit-conflicts]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[fetch-prs]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[files]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [find-dirty]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [flush]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [force-mtimes]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [forest]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [functionlog]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[fzf-add]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[fzf-log-browser]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[fzf-pickaxe-browser]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[fzf-reflog-browser]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [git]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [github-open]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [gitlab-mr]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
@@ -298,6 +342,7 @@ $ egit ignored
 [improved-merge]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [incoming]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [lines]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[ls-branch-files]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [ls-object-refs]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [maildiff]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [maxpack]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
@@ -305,6 +350,8 @@ $ egit ignored
 [neck]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [nuke]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [object-deflate]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[oldest-common-ancestor]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[origin-head]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [outgoing]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [overwritten]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [pie-ify]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
@@ -318,14 +365,16 @@ $ egit ignored
 [rank-contributors]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [rebase-authors]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [rebase-theirs]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[recent]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [recently-checkedout-branches]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [ref-recent]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [rel]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
-[remote-default-branch]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [related]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[remote-default-branch]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [rename-branches]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [reset-with-fire]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [restore-mtime]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[reup]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [rm-deleted-from-repo]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [root-directory]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [run-command-on-revisions]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
@@ -334,14 +383,17 @@ $ egit ignored
 [shrink-repo]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [sp]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [sr]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
-[switch-branch]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[stats]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [submodule-rm]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[switch-branch]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [tag-and-sign]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[tag-diff]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [thanks]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [track]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [trail]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [undelete]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [undo-push]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
+[undo]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [unpushed]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [unreleased]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
 [up]: https://github.com/unixorn/git-extra-commands/blob/master/README.md
@@ -374,6 +426,7 @@ $ egit ignored
 [create-branch]: https://github.com/tj/git-extras/blob/master/Commands.md#git-create-branch
 [delete-branch]: https://github.com/tj/git-extras/blob/master/Commands.md#git-delete-branch
 [delete-merged-branches]: https://github.com/tj/git-extras/blob/master/Commands.md#git-delete-merged-branches
+[delete-squashed-branches]: https://github.com/tj/git-extras/blob/master/Commands.md#git-delete-squashed-branches
 [delete-submodule]: https://github.com/tj/git-extras/blob/master/Commands.md#git-delete-submodule
 [delete-tag]: https://github.com/tj/git-extras/blob/master/Commands.md#git-delete-tag
 [delta]: https://github.com/tj/git-extras/blob/master/Commands.md#git-delta
@@ -422,6 +475,8 @@ $ egit ignored
 [sync]: https://github.com/tj/git-extras/blob/master/Commands.md#git-sync
 [touch]: https://github.com/tj/git-extras/blob/master/Commands.md#git-touch
 [undo]: https://github.com/tj/git-extras/blob/master/Commands.md#git-undo
+[abort]: https://github.com/tj/git-extras/blob/master/Commands.md#git-abort
+[magic]: https://github.com/tj/git-extras/blob/master/Commands.md#git-magic
 [unlock]: https://github.com/tj/git-extras/blob/master/Commands.md#git-unlock
 [utimes]: https://github.com/tj/git-extras/blob/master/Commands.md#git-utimes
 [add-submodule]: https://github.com/nodef/extra-git/wiki/add-submodule
@@ -429,6 +484,7 @@ $ egit ignored
 [apush]: https://github.com/nodef/extra-git/wiki/apush
 [cpush-submodules]: https://github.com/nodef/extra-git/wiki/cpush-submodules
 [cpush]: https://github.com/nodef/extra-git/wiki/cpush
+[default-branch]: https://github.com/nodef/extra-git/wiki/default-branch
 [help]: https://github.com/nodef/extra-git/wiki/help
 [init-submodules]: https://github.com/nodef/extra-git/wiki/init-submodules
 [name]: https://github.com/nodef/extra-git/wiki/name
