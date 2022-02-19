@@ -200,6 +200,17 @@ function copy(url, f=true) {
 }
 
 
+function replaceSymlinks(dir) {
+  for (var f of fs.readdirSync(dir, {withFileTypes: true})) {
+    if (!f.isSymbolicLink()) continue;
+    var pth = path.join(dir, f.name);
+    var txt = readFile(pth);
+    fs.unlinkSync(pth);
+    writeFile(pth, txt);
+  }
+}
+
+
 function makeExec() {
   cp.execSync(`chmod +x bin/*`);
   cp.execSync(`chmod +x index.sh`);
@@ -212,6 +223,7 @@ function main(f=true) {
   var gec = copy('https://github.com/unixorn/git-extra-commands', f);
   if (f) copyMan('wiki');
   if (f) writeFile('man/help.txt', readHelp());
+  if (f) replaceSymlinks('bin');
   writeFile('index.log', readIndex(gei, gex, gec));
   var p = readJson('package.json');
   p.keywords = [...new Set([...p.keywords, ...gei.keys(), ...gec.keys(), ...gex.keys()])];
