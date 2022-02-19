@@ -1,6 +1,6 @@
 {
   "name": "extra-git",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Common utility commands for Git repositories.",
   "preferGlobal": true,
   "main": "index.sh",
@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "exit",
+    "build": "node ./build.js",
     "deploy": "node ./build.js && ebuild github+publish --publishMin=false --publishBranch=false"
   },
   "repository": {
@@ -27,7 +28,7 @@
   },
   "homepage": "https://github.com/nodef/extra-git#readme",
   "devDependencies": {
-    "extra-build": "^1.3.31",
+    "extra-build": "^1.4.5",
     "html-entities": "^2.3.2",
     "markdown-to-text": "^0.1.1"
   }
