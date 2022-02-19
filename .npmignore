@@ -7,10 +7,12 @@ tests/
 # Build
 .build/
 .travis.yml
+.coveralls.yml
 tsconfig.json
-rollup.config.js
 jestconfig.json
+rollup.config.js
 build.js
+*.log
 
 # Others
 unused/

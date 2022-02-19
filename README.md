@@ -75,12 +75,15 @@ $ egit ignored
 | [age] | A git-blame viewer, written using PyGTK. |
 | [ahead-of-master] | Show commits that haven't made it to master yet. |
 | [alias] | Define, search and show aliases. |
+| [amend-push] | Amend current changes and push (inc. submodules). |
+| [amend-push-submodules] | Amend current changes and push all submodules. |
 | [apush] | Amend current changes and push (inc. submodules). |
 | [apush-submodules] | Amend current changes and push all submodules. |
 | [archive-file] | Export the current HEAD of the git repository to an archive. |
 | [attic] | Displays a list of deleted files in your repository. The out ... |
 | [authors] | Generate authors report. |
 | [authors] | Generate authors report. |
+| [basename] | Get name of repository from URL. |
 | [big-file] | Show files in the repository larger than a threshold size. |
 | [branch-name] | Prints the current branch name in automation-friendly format. |
 | [branch-rebaser] | Kicks off an interactive rebase of all the commits on your b ... |
@@ -101,10 +104,13 @@ $ egit ignored
 | [churn] | Show which files are getting changed most often in the repos ... |
 | [clear] | Rigorously clean up a repository. |
 | [clear-soft] | Soft clean up a repository. |
+| [clone-init-submodules] | Clone repository to local (inc. submodules). |
 | [clone-subset] | Uses git clone and git filter-branch to remove from the clon ... |
 | [coauthor] | Add a co-author to the last commit. |
 | [comma] | Adds and commits a file in one command. |
 | [commit-browser] | Uses fzf(https//github.com/junegunn/fzf) to browse commit hi ... |
+| [commit-push] | Commit current changes and push (inc. submodules). |
+| [commit-push-submodules] | Commit current changes and push all submodules. |
 | [commits-since] | Show commit logs since some date. |
 | [conflicts] | Show files with conflicts. |
 | [contrib] | Show user's contributions. |
@@ -144,6 +150,7 @@ $ egit ignored
 | [forest] | Prints a text-based tree visualisation of your repository. R ... |
 | [fork] | Fork a repo on github. |
 | [fresh-branch] | Create fresh branches. |
+| [fullurl] | Get full URL of repository from partial. |
 | [functionlog] | Allows you to get a git log of a particular function, not a  ... |
 | [fzf-add] | Use fzf(https//github.com/junegunn/fzf) to select files to a ... |
 | [fzf-log-browser] | Use fzf(https//github.com/junegunn/fzf) to browse the reposi ... |
@@ -259,7 +266,7 @@ $ egit ignored
 | [unreleased] | Shows git commits since the last tagged version. |
 | [up] | Like git pull but show a short and sexy log of changes after ... |
 | [upstream-sync] | Fetches *upstream/yourforkname* and rebases it into your loc ... |
-| [url] | Get full URL of repository. |
+| [url] | Get full URL of repository from partial. |
 | [utimes] | Change files modification time to their last commit date. |
 | [what-the-hell-just-happened] | Show what just happened. |
 | [when-merged] | Find when a commit was merged into one or more branches. |
@@ -480,11 +487,18 @@ $ egit ignored
 [unlock]: https://github.com/tj/git-extras/blob/master/Commands.md#git-unlock
 [utimes]: https://github.com/tj/git-extras/blob/master/Commands.md#git-utimes
 [add-submodule]: https://github.com/nodef/extra-git/wiki/add-submodule
+[amend-push-submodules]: https://github.com/nodef/extra-git/wiki/amend-push-submodules
+[amend-push]: https://github.com/nodef/extra-git/wiki/amend-push
 [apush-submodules]: https://github.com/nodef/extra-git/wiki/apush-submodules
 [apush]: https://github.com/nodef/extra-git/wiki/apush
+[basename]: https://github.com/nodef/extra-git/wiki/basename
+[clone-init-submodules]: https://github.com/nodef/extra-git/wiki/clone-init-submodules
+[commit-push-submodules]: https://github.com/nodef/extra-git/wiki/commit-push-submodules
+[commit-push]: https://github.com/nodef/extra-git/wiki/commit-push
 [cpush-submodules]: https://github.com/nodef/extra-git/wiki/cpush-submodules
 [cpush]: https://github.com/nodef/extra-git/wiki/cpush
 [default-branch]: https://github.com/nodef/extra-git/wiki/default-branch
+[fullurl]: https://github.com/nodef/extra-git/wiki/fullurl
 [help]: https://github.com/nodef/extra-git/wiki/help
 [init-submodules]: https://github.com/nodef/extra-git/wiki/init-submodules
 [name]: https://github.com/nodef/extra-git/wiki/name
