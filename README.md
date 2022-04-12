@@ -1,14 +1,14 @@
 Common utility commands for [Git] repositories.<br>
-:package: [NPM](https://www.npmjs.com/package/extra-git),
-:smiley_cat: [GitHub](https://github.com/orgs/nodef/packages?repo_name=extra-git),
-:scroll: [Files](https://unpkg.com/extra-git/),
-:blue_book: [Wiki](https://github.com/nodef/extra-git/wiki/).
+📦 [NPM](https://www.npmjs.com/package/extra-git),
+🖥️ [Shell](https://www.npmjs.com/package/extra-git.sh),
+📜 [Files](https://unpkg.com/extra-git/),
+📘 [Wiki](https://github.com/nodef/extra-git/wiki/).
 
 This is an extension of ["git-extras"] and ["git-extra-commands"], including
-some additional commonly used git tools; [cpush], [apush], and [xclone]. You
-can install this with `npm install -g extra-git`.
+some additional commonly used git tools; [cpush], [apush], and [xclone].<br>
+You can install this with `npm install -g extra-git.sh`.
 
-> Stability: Experimental.
+> Stability: [Experimental](https://www.youtube.com/watch?v=L1j93RnIxEo).
 
 <br>
 
