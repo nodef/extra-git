@@ -284,14 +284,32 @@ $ egit ignored
 
 ## References
 
-- ["git-extras"]
-- ["git-extra-commands"]
+- [git-extras package by TJ Holowaychuk](https://github.com/tj/git-extras)
+- [git-extra-commands package by Joe Block](https://github.com/unixorn/git-extra-commands)
+- [gitly package by Takeshi](https://github.com/iwatakeshi/gitly)
+- [commitizen package by Jim Cummins and others](https://github.com/commitizen/cz-cli)
+- [git-up package by Ionică Bizău (Johnny B.)](https://github.com/IonicaBizau/git-up)
+- [gitlog package by Dom Harrington](https://github.com/domharrington/node-gitlog)
+- [git-utils package by Kevin Sawicki and others](https://github.com/atom/git-utils)
+- [isomorphic-git package by Billie Hilton and others](https://github.com/isomorphic-git/isomorphic-git)
+- [git-url-parse package by Ionică Bizău (Johnny B.)](https://github.com/IonicaBizau/git-url-parse)
+- [git-rev-sync package by Kurt Ericson](https://github.com/kurttheviking/git-rev-sync-js)
+- [hosted-git-info package by Rebecca Turner and others](https://github.com/npm/hosted-git-info)
+- [husky package by @typicode](https://github.com/typicode/husky)
+- [simple-git package by Steve King](https://github.com/steveukx/git-js)
+- [git package by Christian Amor Kvalheim](https://github.com/christkv/node-git)
+- [git-extras package by @akunchen](https://gitee.com/akunchen/git-extras)
+- [@johnls/git-extra package by John Lyon-Smith](https://github.com/jlyonsmith/git-extra)
+- [git-multi-profile package by Adaptable Bytes LLC](https://github.com/AdaptableBytes/git-multi-profile)
+- [dugite-extra package by Akos Kitta and others](https://github.com/eclipse-theia/dugite-extra)
 - [Get path of current script when executed through a symlink](https://unix.stackexchange.com/a/17500/166668)
 
 <br>
 <br>
 
+
 [![](https://img.youtube.com/vi/Nzr4qG_yZHU/maxresdefault.jpg)](https://www.youtube.com/watch?v=Nzr4qG_yZHU)
+
 
 [Git]: https://git-scm.com
 ["git-extras"]: https://github.com/tj/git-extras
