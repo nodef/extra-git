@@ -309,7 +309,7 @@ $ egit ignored
 
 
 [![](https://img.youtube.com/vi/Nzr4qG_yZHU/maxresdefault.jpg)](https://www.youtube.com/watch?v=Nzr4qG_yZHU)
-
+![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/extra-git)
 
 [Git]: https://git-scm.com
 ["git-extras"]: https://github.com/tj/git-extras
