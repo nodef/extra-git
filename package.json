@@ -10,8 +10,7 @@
   },
   "scripts": {
     "test": "exit",
-    "build": "node ./build.js",
-    "deploy": "node ./build.js && ebuild github+publish --publishMin=false --publishBranch=false"
+    "build": "node ./build.js"
   },
   "keywords": [
     "extra",
