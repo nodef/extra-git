@@ -1,64 +1,71 @@
 Common utility commands for [Git] repositories.<br>
-📦 [NPM](https://www.npmjs.com/package/extra-git),
 🖥️ [Shell](https://www.npmjs.com/package/extra-git.sh),
-📜 [Files](https://unpkg.com/extra-git/),
-📘 [Wiki](https://github.com/nodef/extra-git/wiki/).
+📜 [Files](https://unpkg.com/extra-git.sh/),
+📘 [Wiki](https://github.com/nodef/extra-git.sh/wiki/).
 
 This is an extension of ["git-extras"] and ["git-extra-commands"], including
-some additional commonly used git tools; [cpush], [apush], and [xclone].<br>
-You can install this with `npm install -g extra-git.sh`.
+some additional commonly used git tools; [cpush], [apush], and [xclone].
 
-> Stability: [Experimental](https://www.youtube.com/watch?v=L1j93RnIxEo).
+### Installation
+
+```bash
+# Install extra-git as `extra-git`, `xgit`, or `egit`
+$ npm i -g extra-git.sh
+```
 
 <br>
 
+
+## Examples
+
 ```bash
 # Commit current changes and push (inc. submodules)
-$ egit cpush "message"
+# $GIT_COMMIT_PREFIX: Commit message prefix (optional)
+$ xgit cpush "message"
 
 # Amend current changes and push (inc. submodules)
-$ egit apush
+$ xgit apush
 
 # Clone repository to local (inc. submodules)
-$ egit xclone openstack/openstack
+$ xgit xclone openstack/openstack
+```
 
-
-
-
+```bash
 # Do a hard reset and delete all untracked files
-$ egit clear
+$ xgit clear
+```
 
-
+```bash
 # List authors
-$ egit authors --list
-$ egit authors --list --no-email
+$ xgit authors --list
+$ xgit authors --list --no-email
 
 # TJ Holowaychuk <tj@vision-media.ca>
 # hemanth.hm <hemanth.hm@gmail.com>
 # Jonhnny Weslley <jw@jonhnnyweslley.net>
 # nickl- <github@jigsoft.co.za>
 # Leila Muhtasib <muhtasib@gmail.com>
+```
 
-
+```bash
 # Merge commits from src-branch into the current branch as a single commit
-$ egit squash fixed-cursor-styling
-$ egit squash fixed-cursor-styling "Fixed cursor styling"
-$ egit squash 95b7c52
-$ egit squash HEAD~3
-$ egit squash HEAD~3 "Work on a feature"
+$ xgit squash fixed-cursor-styling
+$ xgit squash fixed-cursor-styling "Fixed cursor styling"
+$ xgit squash 95b7c52
+$ xgit squash HEAD~3
+$ xgit squash HEAD~3 "Work on a feature"
+```
 
-
-
-
+```bash
 # Current branch name in automation-friendly format
-$ egit branch-name
+$ xgit branch-name
 # main
 
 # Delete all local branches that have been merged into HEAD
-$ egit delete-local-merged
+$ xgit delete-local-merged
 
 # Show files being ignored by git in the repo
-$ egit ignored
+$ xgit ignored
 ```
 
 <br>
@@ -309,7 +316,7 @@ $ egit ignored
 
 
 [![](https://img.youtube.com/vi/Nzr4qG_yZHU/maxresdefault.jpg)](https://www.youtube.com/watch?v=Nzr4qG_yZHU)
-![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/extra-git)
+![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/extra-git.SH)
 
 [Git]: https://git-scm.com
 ["git-extras"]: https://github.com/tj/git-extras

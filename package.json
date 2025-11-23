@@ -1,6 +1,6 @@
 {
   "name": "extra-git.sh",
-  "version": "2.0.2",
+  "version": "2.3.0",
   "description": "Common utility commands for Git repositories.",
   "preferGlobal": true,
   "main": "index.sh",
@@ -32,12 +32,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nodef/extra-git.git"
+    "url": "git+https://github.com/nodef/extra-git.sh.git"
   },
   "bugs": {
-    "url": "https://github.com/nodef/extra-git/issues"
+    "url": "https://github.com/nodef/extra-git.sh/issues"
   },
-  "homepage": "https://github.com/nodef/extra-git#readme",
+  "homepage": "https://github.com/nodef/extra-git.sh#readme",
   "devDependencies": {
     "html-entities": "^2.6.0",
     "markdown-to-text": "^0.1.1"
